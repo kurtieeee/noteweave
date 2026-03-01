@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 265 30% 17%;
+    --foreground: 30 33% 93%;
+
+    --card: 265 25% 22%;
+    --card-foreground: 30 33% 93%;
+
+    --popover: 265 25% 24%;
+    --popover-foreground: 30 33% 93%;
+
+    --primary: 275 52% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 265 20% 28%;
+    --secondary-foreground: 30 33% 93%;
+
+    --muted: 265 18% 24%;
+    --muted-foreground: 260 15% 55%;
+
+    --accent: 230 42% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 265 15% 30%;
+    --input: 265 15% 30%;
+    --ring: 275 52% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --surface: 265 22% 20%;
+    --surface-foreground: 30 33% 93%;
+    --success: 230 42% 67%;
+    --success-foreground: 0 0% 100%;
+    --warning: 45 100% 55%;
+    --warning-foreground: 265 30% 17%;
+    --recording: 0 100% 60%;
+    --recording-foreground: 0 0% 100%;
+
+    --glow-primary: 275 52% 60%;
+    --glow-accent: 230 42% 67%;
+    --neon-pink: 275 52% 60%;
+    --neon-blue: 230 42% 67%;
+
+    --sidebar-background: 250 20% 9%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-primary: 280 100% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 250 18% 16%;
+    --sidebar-accent-foreground: 220 20% 92%;
+    --sidebar-border: 250 15% 18%;
+    --sidebar-ring: 280 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--border)) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  @keyframes pulse-recording {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+
+  .animate-pulse-recording {
+    animation: pulse-recording 1.2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float-note {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-18px) rotate(5deg); }
+    50% { transform: translateY(-6px) rotate(-3deg); }
+    75% { transform: translateY(-22px) rotate(4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  .animate-float-note {
+    animation: float-note 8s ease-in-out infinite;
+  }
+
+  @keyframes glow-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+    33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.7; }
+    66% { transform: translate(-20px, 15px) scale(0.9); opacity: 0.4; }
+  }
+
+  .animate-glow-drift {
+    animation: glow-drift 12s ease-in-out infinite;
+  }
+
+  .animate-glow-drift-reverse {
+    animation: glow-drift 14s ease-in-out infinite reverse;
+  }
+
+  .glow-note {
+    filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.6));
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.5), 0 0 80px hsl(var(--glow-primary) / 0.2); }
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3), 0 0 60px hsl(var(--glow-primary) / 0.1);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.3), 0 0 60px hsl(var(--glow-accent) / 0.1);
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      hsl(var(--glow-primary) / 0.15) 0%,
+      hsl(var(--glow-accent) / 0.05) 40%,
+      transparent 70%
+    );
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

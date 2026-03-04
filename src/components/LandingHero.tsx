@@ -9,16 +9,16 @@ interface LandingHeroProps {
 
 const LandingHero = ({ onRecord, onUpload }: LandingHeroProps) => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4">
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-4">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-radial" />
       <FloatingNotes />
 
-      <div className="relative z-10 mx-auto max-w-2xl text-center">
+      <div className="relative z-10 mx-auto w-full max-w-2xl text-center">
         {/* Logo placeholder */}
-        <div className="mb-6 h-20 w-20 mx-auto" />
+        <div className="mb-6 h-25 w-20 mx-auto" />
 
-        <h1 className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl">
+        <h1 className="mb-5 text-5xl font-bold tracking-tight sm:text-6xl">
           <span className="text-gradient">NoteWeave</span>
         </h1>
 
@@ -28,11 +28,11 @@ const LandingHero = ({ onRecord, onUpload }: LandingHeroProps) => {
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button variant="hero" size="lg" onClick={onRecord} className="min-w-[200px]">
-            <Mic className="h-5 w-5" />
+            <Mic className="h-20 w-5" />
             Record
           </Button>
           <Button variant="outline" size="lg" onClick={onUpload} className="min-w-[200px]">
-            <Upload className="h-5 w-5" />
+            <Upload className="h-20 w-5" />
             Upload Audio
           </Button>
         </div>
